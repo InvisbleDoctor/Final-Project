@@ -52,6 +52,8 @@ public:
     std::string getCity() const {return m_city;}
     std::string getZipCode() const {return m_zipCode;}
     std::string getPhoneNumber() const {return m_phoneNumber;}
+    std::vector<AllPurchases> getPurchaseHistory() const {return customerPurchaseHistory;}
+    
     
 
     //Setters

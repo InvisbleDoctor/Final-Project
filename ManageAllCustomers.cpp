@@ -1,5 +1,29 @@
 #include "ManageAllCustomers.h"
 
+void printCustomerHeader(){
+    const int wAccountNumberCollum = 10;
+    const int wFirstNameCollum = 20;
+    const int wLastNameCollum = 20;
+    const int wStreetAddressCollum = 40;
+    const int wCityCollum = 15;
+    const int wStateCollum = 15;
+    const int wZipCodeCollum = 15;
+    const int wPhoneNumberCollum = 20;
+
+    //Helper Chars
+    const char dashFillChar = '-';
+    const std::string bar = "|";
+
+    //Header Collum For Dispaying All Customer Data   accountNumber,firstName,lastName,streetAddress,city,state,zipCode,phoneNumber
+    std::cout << std::left << std::setw(wAccountNumberCollum) << "Account #" << bar 
+              << std::left << std::setw(wFirstNameCollum) << "First Name" << bar
+              << std::left << std::setw(wLastNameCollum) << "Last Name" << bar
+              << std::left << std::setw(wStreetAddressCollum) << "Street Address" << bar
+              << std::left << std::setw(wCityCollum) << "City" << bar
+              << std::left << std::setw(wStateCollum) << "State" << bar
+              << std::left << std::setw(wZipCodeCollum) << "Zip Code" << bar
+              << std::left << std::setw(wPhoneNumberCollum) << "Phone Number" << std::endl;
+}
 
 bool ManageAllCustomers::loadCustomerDataFromFile(const std::string& filename)
 {
@@ -147,16 +171,100 @@ void ManageAllCustomers::displayAllCustomerData(){
     }
 }
 
+void ManageAllCustomers::displayAllCustomerData(const std::vector<AllCustomers>& customers){
+
+    const int wAccountNumberCollum = 10;
+    const int wFirstNameCollum = 20;
+    const int wLastNameCollum = 20;
+    const int wStreetAddressCollum = 40;
+    const int wCityCollum = 15;
+    const int wStateCollum = 15;
+    const int wZipCodeCollum = 15;
+    const int wPhoneNumberCollum = 20;
+
+    //Helper Chars
+    const char dashFillChar = '-';
+    const std::string bar = "|";
+
+    //Header Collum For Dispaying All Customer Data   accountNumber,firstName,lastName,streetAddress,city,state,zipCode,phoneNumber
+    std::cout << std::left << std::setw(wAccountNumberCollum) << "Account #" << bar 
+              << std::left << std::setw(wFirstNameCollum) << "First Name" << bar
+              << std::left << std::setw(wLastNameCollum) << "Last Name" << bar
+              << std::left << std::setw(wStreetAddressCollum) << "Street Address" << bar
+              << std::left << std::setw(wCityCollum) << "City" << bar
+              << std::left << std::setw(wStateCollum) << "State" << bar
+              << std::left << std::setw(wZipCodeCollum) << "Zip Code" << bar
+              << std::left << std::setw(wPhoneNumberCollum) << "Phone Number" << std::endl;
+
+    for (int i = 0; i < customers.size(); ++i){
+        customers[i].printCustomerData();
+    }
+}
+
 
 void ManageAllCustomers::displaySortedCustomerData() {
-    std::cout << "Display Sorted Customer Data function called.\n";
-    // Implementation
+    int userOption = 0;
+    std::vector<AllCustomers> sortedCustomerData = defaultCustomerDataBase; //Copy original data to sorted vector
+    std::cout << "1:Sort By Last Name Ascending \n2: Sort By Last Name Descending\n";
+    std::cout << "Enter Option: ";
+    std::cin >> userOption;
+
+    if (userOption == 1)
+    {
+        std::sort(sortedCustomerData.begin(), sortedCustomerData.end(),
+            [](const AllCustomers& a, const AllCustomers& b) {
+                return a.getLastName() < b.getLastName();
+            }
+        );
+    }
+    else if (userOption == 2)
+    {
+        std::sort(sortedCustomerData.begin(), sortedCustomerData.end(),
+            [](const AllCustomers& a, const AllCustomers& b) {
+                return a.getLastName() > b.getLastName();
+            }
+        );
+    }
+    else 
+    {
+        std::cout << "Invalid Option Selected. Returning to Main Menu.\n";
+        return;
+    }
+
+    
+    displayAllCustomerData(sortedCustomerData);
 }
 
+
+
+
 void ManageAllCustomers::displayTotalCustomerSpendAmt() {
-    std::cout << "Display Total Customer Spend Amount function called.\n";
-    // Implementation
+    std::cout << "Type the account number of the customer you wish to view total spend amount:";
+    int accountNumber;
+    std::cin >> accountNumber;
+    bool customerFound = false;
+
+    for (int i = 0; i < defaultCustomerDataBase.size(); ++i)
+    {
+        if(defaultCustomerDataBase[i].getAccountNumber() == accountNumber)
+        {
+            customerFound = true;
+            double totalSpend = 0.0;
+            
+            for (const auto& purchase : defaultCustomerDataBase[i].getPurchaseHistory())
+            {
+                totalSpend += purchase.getCostOfPurchase();
+            }
+            std::cout << "Total Spend Amount for Customer Account #" << accountNumber << " is: $"
+                      << std::fixed << std::setprecision(2) << totalSpend << std::endl;
+        }
+    }
+    if (!customerFound)
+    {
+        std::cout << "Customer with account number not found: Returning to Main Menu" << accountNumber << " not found.\n";
+    } 
 }
+
 
 void ManageAllCustomers::insertNewCustomer() {
     std::cout << "Insert New Customer function called.\n";
@@ -192,6 +300,7 @@ void ManageAllCustomers::displaySpecificCustomerAccountAndPurchaseHistory()
         {
             customerFound = true;
             std::cout << "\nCustomer Information:\n";
+            printCustomerHeader();
             defaultCustomerDataBase[i].printCustomerData();
             std::cout << "\nPurchase History:\n";
             defaultCustomerDataBase[i].printPurchaseHistory();

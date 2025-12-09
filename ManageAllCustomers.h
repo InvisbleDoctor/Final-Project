@@ -16,6 +16,7 @@ public:
     bool loadCustomerDataFromFile(const std::string& filename);
     bool loadCustomerPurchaseDataFromFile(const std::string& filename);
     void displayAllCustomerData();
+    void displayAllCustomerData(const std::vector<AllCustomers>& customers); //Overloaded to display passed in vector
     void displaySortedCustomerData(); //sort by name 
     void displayTotalCustomerSpendAmt();
     void insertNewCustomer(); //Add Multiple Customers give option recursive 
