@@ -43,7 +43,7 @@ public:
     void addPurchaseToHistory(const AllPurchases& newPurchase){
         customerPurchaseHistory.push_back(newPurchase);
     }
-
+    void printPurchaseHistory() const;
     //Getter's
     int getAccountNumber() const {return m_accountNumber;}
     int getFirstName() const {return m_accountNumber;}

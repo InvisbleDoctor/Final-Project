@@ -55,14 +55,14 @@ int main(){
     {
         std::cout << "\n--- Customer Management Menu ---\n"
                   << "1. Display All Customer Data\n"
-                  << "2. Display Sorted Customer Data\n"
+                  << "2. Display Sorted Customer Data By Last Name\n"
                   << "3. Display Total Customer Spend Amount\n"
                   << "4. Insert New Customer\n"
                   << "5. Update Customer Information\n"
                   << "6. Delete Customer\n"
                   << "7. Add New Customer Purchase\n"
                   << "8. Export Customer Data\n"
-                  << "9. Display Specific Customer Purchase History\n"
+                  << "9. Display Specific Customer Account And Purchase History\n"
                   << "0. Exit\n"
                   << "Enter your choice: ";
         choice = readMenuChoice();
@@ -70,7 +70,7 @@ int main(){
         switch(choice)
         {
             case 1:
-                customerManager.displayAllCustomerData();
+                customerManager.displayAllCustomerData(); 
                 break;
             case 2:
                 customerManager.displaySortedCustomerData();
@@ -92,6 +92,9 @@ int main(){
                 break;
             case 8:
                 customerManager.exportCustomerData();
+                break;
+            case 9:
+                customerManager.displaySpecificCustomerAccountAndPurchaseHistory();
                 break;
             case 0:
                 std::cout << "Exiting program.\n";

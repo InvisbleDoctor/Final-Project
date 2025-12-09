@@ -26,6 +26,7 @@ public:
     void addNewCustomerPurchase(); //ADD more than one purchase give recursive option
     void exportCustomerData(); //Give option to write over existing file or export to new file
     
+    void displaySpecificCustomerAccountAndPurchaseHistory();
 
 
 

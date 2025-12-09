@@ -116,6 +116,7 @@ bool ManageAllCustomers::loadCustomerPurchaseDataFromFile(const std::string& fil
 
 
 
+
 void ManageAllCustomers::displayAllCustomerData(){
 
     const int wAccountNumberCollum = 10;
@@ -176,4 +177,28 @@ void ManageAllCustomers::addNewCustomerPurchase() {
 
 void ManageAllCustomers::exportCustomerData() {
     std::cout << "Export Customer Data function called.\n";
+}
+
+void ManageAllCustomers::displaySpecificCustomerAccountAndPurchaseHistory()
+{
+   std::cout << "Type the account number of the customer you wish to view: ";
+    int accountNumber;
+    std::cin >> accountNumber;
+    bool customerFound = false;
+
+    for (int i = 0; i < defaultCustomerDataBase.size(); ++i)
+    {
+        if(defaultCustomerDataBase[i].getAccountNumber() == accountNumber)
+        {
+            customerFound = true;
+            std::cout << "\nCustomer Information:\n";
+            defaultCustomerDataBase[i].printCustomerData();
+            std::cout << "\nPurchase History:\n";
+            defaultCustomerDataBase[i].printPurchaseHistory();
+        }
+    }
+    if (!customerFound)
+    {
+        std::cout << "Customer with account number not found: Returning to Main Menu" << accountNumber << " not found.\n";
+    }
 }
