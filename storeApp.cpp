@@ -70,7 +70,7 @@ int main(){
         switch(choice)
         {
             case 1:
-                customerManager.displayAllCustomerData(); 
+                customerManager.displayAllCustomerData();
                 break;
             case 2:
                 customerManager.displaySortedCustomerData();

@@ -113,6 +113,6 @@ void AllCustomers::printPurchaseHistory() const //AllPurchases(const int& accoun
         std::cout << std::left << std::setw(accountNumberWidth) << customerPurchaseHistory[i].getAccountNumber() << bar
                   << std::left << std::setw(itemWidth) << customerPurchaseHistory[i].getItem() << bar
                   << std::left << std::setw(dateWidth) << customerPurchaseHistory[i].getDateOfPurchase().returnDateAsString() << bar
-                  << "$" << std::fixed << std::setprecision(2)  << customerPurchaseHistory[i].getCostOfPurchase() << std::endl;
+                  << std::left << "$" << std::fixed << std::setprecision(2) << customerPurchaseHistory[i].getCostOfPurchase() << std::endl;
     }
 }
