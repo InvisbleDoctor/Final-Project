@@ -46,10 +46,11 @@ public:
     void printPurchaseHistory() const;
     //Getter's
     int getAccountNumber() const {return m_accountNumber;}
-    int getFirstName() const {return m_accountNumber;}
+    std::string getFirstName() const {return m_firstName;}
     std::string getLastName() const {return m_lastName;}
     std::string getStreetAddress() const {return m_streetAddress;}
     std::string getCity() const {return m_city;}
+    std::string getState() const {return m_state;}
     std::string getZipCode() const {return m_zipCode;}
     std::string getPhoneNumber() const {return m_phoneNumber;}
     std::vector<AllPurchases> getPurchaseHistory() const {return customerPurchaseHistory;}
@@ -62,6 +63,7 @@ public:
     void setLastName(const std::string lastNameVal) {m_lastName = lastNameVal;}
     void setStreetAddress(const std::string streetAdressVal) {m_streetAddress = streetAdressVal;}
     void setCity(const std::string cityVal) {m_city = cityVal;}
+    void setState(const std::string stateVal) {m_state = stateVal;}
     void setZipCode(const std::string zipCodeVal) {m_zipCode = zipCodeVal;}
     void setPhoneNumber(const std::string phoneNumberVal) {m_phoneNumber = phoneNumberVal;}
     
