@@ -61,7 +61,8 @@
         }
     }
 }
-
+    void printCustomerHeader();
+    void printCustomerHeaderWithIndex();
 
 class ManageAllCustomers
 {
@@ -77,6 +78,7 @@ public:
     bool loadCustomerPurchaseDataFromFile(const std::string& filename);
     void displayAllCustomerData();
     void displayAllCustomerData(const std::vector<AllCustomers>& customers); //Overloaded to display passed in vector
+    void displayAllCustomerDataWithIndex();
     void displaySortedCustomerData(); //sort by name 
     void displayTotalCustomerSpendAmt();
     void insertNewCustomer(); //Add Multiple Customers give option recursive 
@@ -90,6 +92,7 @@ public:
     void displaySpecificCustomerAccountAndPurchaseHistory();
     int customerManageMenuApp();
     
+    int userCustomerSelectIndex();
     ~ManageAllCustomers(){} //Destructor
     
 

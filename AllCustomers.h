@@ -40,6 +40,7 @@ public:
 
     //Customer Management
     void printCustomerData() const;
+    void printCustomerDataWithIndex(int index) const;
     void addPurchaseToHistory(const AllPurchases& newPurchase){
         customerPurchaseHistory.push_back(newPurchase);
     }

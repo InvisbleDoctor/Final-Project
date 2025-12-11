@@ -25,6 +25,34 @@ void printCustomerHeader(){
               << std::left << std::setw(wPhoneNumberCollum) << "Phone Number" << std::endl;
 }
 
+void printCustomerHeaderWithIndex()
+{
+    const int wAccountNumberCollum = 10;
+    const int wFirstNameCollum = 20;
+    const int wLastNameCollum = 20;
+    const int wStreetAddressCollum = 40;
+    const int wCityCollum = 15;
+    const int wStateCollum = 15;
+    const int wZipCodeCollum = 15;
+    const int wPhoneNumberCollum = 20;
+    const int wIndexCollum = 7;
+
+    //Helper Chars
+    const char dashFillChar = '-';
+    const std::string bar = "|";
+
+    //Header Collum For Dispaying All Customer Data   accountNumber,firstName,lastName,streetAddress,city,state,zipCode,phoneNumber
+    std::cout << std::left << std::setw(wAccountNumberCollum) << "Account #" << bar 
+              << std::left << std::setw(wFirstNameCollum) << "First Name" << bar
+              << std::left << std::setw(wLastNameCollum) << "Last Name" << bar
+              << std::left << std::setw(wStreetAddressCollum) << "Street Address" << bar
+              << std::left << std::setw(wCityCollum) << "City" << bar
+              << std::left << std::setw(wStateCollum) << "State" << bar
+              << std::left << std::setw(wZipCodeCollum) << "Zip Code" << bar
+              << std::left << std::setw(wPhoneNumberCollum) << "Phone Number" << bar 
+              << std::left << std::setw(wIndexCollum) << "CID: " << std::endl;
+}
+
 bool ManageAllCustomers::loadCustomerDataFromFile(const std::string& filename)
 {
     //Checking if file opens correctly
@@ -413,11 +441,11 @@ void ManageAllCustomers::insertNewCustomer() {
 
 void ManageAllCustomers::updateCustomerInformation() {
 
-    std::cout << "Type Account Number of Customer to Update: ";
-    int accountNumber;
-    std::cin >> accountNumber;
+    //std::cout << "Type Account Number of Customer to Update: ";
+    int accountNumber = userCustomerSelectIndex();
+    //std::cin >> accountNumber;
     
-
+    
     for (int i = 0; i < defaultCustomerDataBase.size(); ++i)
     {
         if(defaultCustomerDataBase[i].getAccountNumber() == accountNumber)
@@ -531,11 +559,10 @@ void ManageAllCustomers::updateCustomerInformation() {
 
 
 void ManageAllCustomers::deleteCustomer(){
-    std::cout << "Type Account Number of Customer to Delete: ";
-    int accountNumber;
+    //std::cout << "Type Account Number of Customer to Delete: ";
+    int accountNumber = userCustomerSelectIndex();
     int finalConfirm;
-    std::cin >> accountNumber;
-    std::cin.ignore(); //Ignore newline character
+   
 
     std::cout << "Are you sure you want to delete this customer? Type 1 for Yes, 0 for No: ";
     std::cin >> finalConfirm;
@@ -560,11 +587,16 @@ void ManageAllCustomers::deleteCustomer(){
 
 }
 void ManageAllCustomers::addNewCustomerPurchase() {
-    std::cout << "Type Account Number of Customer to Add Purchase: ";
-    int accountNumber;
-    std::cin >> accountNumber;
+    //std::cout << "Type Account Number of Customer to Add Purchase: ";
+    int accountNumber = userCustomerSelectIndex();
+    std::cout << "Are you adding a purchase for Account Number: " << accountNumber << " ? (1 for Yes, 0 for No): ";
+    int confirmAccount;
+    std::cin >> confirmAccount;
     std::cin.ignore(); //Ignore newline character
-
+    if (confirmAccount != 1) {
+        std::cout << "Purchase addition cancelled. Returning to main menu.\n";
+        return;
+    }
     for(auto& account : defaultCustomerDataBase){
         if(account.getAccountNumber() == accountNumber){
             std::string item;
@@ -590,7 +622,7 @@ void ManageAllCustomers::addNewCustomerPurchase() {
                 validDate = yearStr.size() == 4 &&
                         monthStr.size() == 2 &&
                         dayStr.size() == 2 &&
-                        stoi(yearStr) > 2025 &&
+                        stoi(yearStr) <= 2025 &&
                         stoi(monthStr) >= 1 && stoi(monthStr) <= 12 && //Month between 1 and 12 
                         stoi(dayStr) >= 1 && stoi(dayStr) <= 31 &&
                         std::all_of(yearStr.begin(), yearStr.end(), ::isdigit) &&
@@ -598,8 +630,9 @@ void ManageAllCustomers::addNewCustomerPurchase() {
                         std::all_of(dayStr.begin(), dayStr.end(), ::isdigit);
                 
                 if (!validDate) {
-                    std::cout << "Invalid date format. Please use YYYY MM DD format.\n";
-                } else {
+                    std::cout << "Invalid date format. Please use YYYY MM DD format, Check Values\n";
+                } 
+                else {
                     year = std::stoi(yearStr);
                     month = std::stoi(monthStr);
                     day = std::stoi(dayStr);
@@ -671,9 +704,8 @@ void ManageAllCustomers::exportCustomerData() {
 
 void ManageAllCustomers::displaySpecificCustomerAccountAndPurchaseHistory()
 {
-   std::cout << "Type the account number of the customer you wish to view: ";
-    int accountNumber;
-    std::cin >> accountNumber;
+   //std::cout << "Type the account number of the customer you wish to view: ";
+    int accountNumber = userCustomerSelectIndex();
     bool customerFound = false;
 
     for (int i = 0; i < defaultCustomerDataBase.size(); ++i)
@@ -769,5 +801,27 @@ int ManageAllCustomers::customerManageMenuApp()
             default:
                 std::cout << "Invalid choice. Please try again.\n";
         }
+    }
+}
+
+
+int ManageAllCustomers::userCustomerSelectIndex()
+{
+    printCustomerHeaderWithIndex();
+    for(int i = 0; i < defaultCustomerDataBase.size(); ++i)
+    {
+        defaultCustomerDataBase[i].printCustomerDataWithIndex(i);
+    }
+    int userIndex;
+    std::cout << "Select Customer from list by index number: ";
+    std::cin >> userIndex;
+    std::cin.ignore(); //Ignore newline character
+
+    if(userIndex < 0 || userIndex >= defaultCustomerDataBase.size()){
+        std::cout << "Invalid index selected. Trying again.\n";
+        return userCustomerSelectIndex();
+    }
+    else {
+        return defaultCustomerDataBase[userIndex].getAccountNumber();
     }
 }

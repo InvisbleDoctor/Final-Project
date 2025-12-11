@@ -83,7 +83,47 @@ void AllCustomers::printCustomerData() const
               << std::left << std::setw(wStateCollum) << m_state << bar
               << std::left << std::setw(wZipCodeCollum) << m_zipCode << bar
               << std::left << std::setw(wPhoneNumberCollum) << m_phoneNumber << std::endl;
-}   
+}
+
+void AllCustomers::printCustomerDataWithIndex(int index) const
+{
+    //Seting the width size of collums for display of data
+    const int wFirstNameCollum = 20;
+    const int wLastNameCollum = 20;
+    const int wAccountNumberCollum = 10;
+    const int wStreetAddressCollum = 40;
+    const int wCityCollum = 15;
+    const int wStateCollum = 15;
+    const int wZipCodeCollum = 15;
+    const int wPhoneNumberCollum = 20;
+    const int wIndexCollum = 7;
+
+    //Helper Chars
+    const char dashFillChar = '-';
+    const std::string bar = "|";
+
+    //Splitter Collum To Seperate Header From Data
+    std::cout << std::string(wAccountNumberCollum, dashFillChar) << bar 
+              << std::string(wFirstNameCollum, dashFillChar) << bar
+              << std::string(wLastNameCollum, dashFillChar) << bar
+              << std::string(wStreetAddressCollum, dashFillChar) << bar
+              << std::string(wCityCollum, dashFillChar) << bar
+              << std::string(wStateCollum, dashFillChar) << bar
+              << std::string(wZipCodeCollum, dashFillChar) << bar
+              << std::string(wPhoneNumberCollum, dashFillChar) << bar
+              << std::string(wIndexCollum, dashFillChar) << std::endl;
+
+    //Printing Customer Data  accountNumber,firstName,lastName,streetAddress,city,state,zipCode,phoneNumber
+    std::cout << std::left << std::setw(wAccountNumberCollum) << m_accountNumber << bar
+              << std::left << std::setw(wFirstNameCollum) << m_firstName << bar
+              << std::left << std::setw(wLastNameCollum) << m_lastName << bar
+              << std::left << std::setw(wStreetAddressCollum) << m_streetAddress << bar
+              << std::left << std::setw(wCityCollum) << m_city << bar
+              << std::left << std::setw(wStateCollum) << m_state << bar
+              << std::left << std::setw(wZipCodeCollum) << m_zipCode << bar
+              << std::left << std::setw(wPhoneNumberCollum) << m_phoneNumber << bar
+              << std::left << std::setw(wIndexCollum) << index << std::endl;
+}
 
 void AllCustomers::printPurchaseHistory() const //AllPurchases(const int& accountNumber, const std::string& item, const Date& dateOfPurchase, const double& costOfPurchase)
 {
