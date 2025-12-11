@@ -720,7 +720,7 @@ int ManageAllCustomers::customerManageMenuApp()
     int choice;
     while(true)
     {
-        std::cout << "\n--- Customer Management Menu ---\n"
+        std::cout << "\n---" << getStoreName() << " Customer Management Menu ---\n"
                   << "1. Display All Customer Data\n"
                   << "2. Display Sorted Customer Data By Last Name\n"
                   << "3. Display Total Customer Spend Amount\n"
