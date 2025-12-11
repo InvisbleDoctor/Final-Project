@@ -61,16 +61,24 @@
         }
     }
 }
-
+    void printCustomerHeader();
+    void printCustomerHeaderWithIndex();
 
 class ManageAllCustomers
 {
     std::vector<AllCustomers> defaultCustomerDataBase;
+    std::string M_storeName;
 public:
+    ManageAllCustomers() : M_storeName("Store Location Unknown ") {}
+    ManageAllCustomers(const std::string& storeName) : M_storeName(storeName) {} //Parameterized Constructor
+    std::string getStoreName() const {return M_storeName;}
+    void setStoreName(const std::string& storeName) {M_storeName = storeName;}
+
     bool loadCustomerDataFromFile(const std::string& filename);
     bool loadCustomerPurchaseDataFromFile(const std::string& filename);
     void displayAllCustomerData();
     void displayAllCustomerData(const std::vector<AllCustomers>& customers); //Overloaded to display passed in vector
+    void displayAllCustomerDataWithIndex();
     void displaySortedCustomerData(); //sort by name 
     void displayTotalCustomerSpendAmt();
     void insertNewCustomer(); //Add Multiple Customers give option recursive 
@@ -83,7 +91,9 @@ public:
     
     void displaySpecificCustomerAccountAndPurchaseHistory();
     int customerManageMenuApp();
-       
+    
+    int userCustomerSelectIndex();
+    ~ManageAllCustomers(){} //Destructor
     
 
 };
