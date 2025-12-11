@@ -43,6 +43,24 @@
         }
         return true;
     }
+    inline int readMenuChoice(){
+    while(true)
+    {
+        std::string line;
+        std::getline(std::cin, line);
+
+        try
+        {
+            //trys to convert player input into int
+            int choice = std::stoi(line);
+            return choice;
+        } 
+        catch(...) //Catch any type of exception 
+        {
+             std::cout << "Please enter a number. \n";
+        }
+    }
+}
 
 
 class ManageAllCustomers
@@ -64,6 +82,7 @@ public:
     void exportCustomerData(); //Give option to write over existing file or export to new file
     
     void displaySpecificCustomerAccountAndPurchaseHistory();
+    int customerManageMenuApp();
        
     
 

@@ -590,6 +590,9 @@ void ManageAllCustomers::addNewCustomerPurchase() {
                 validDate = yearStr.size() == 4 &&
                         monthStr.size() == 2 &&
                         dayStr.size() == 2 &&
+                        stoi(yearStr) > 2025 &&
+                        stoi(monthStr) >= 1 && stoi(monthStr) <= 12 && //Month between 1 and 12 
+                        stoi(dayStr) >= 1 && stoi(dayStr) <= 31 &&
                         std::all_of(yearStr.begin(), yearStr.end(), ::isdigit) &&
                         std::all_of(monthStr.begin(), monthStr.end(), ::isdigit) &&
                         std::all_of(dayStr.begin(), dayStr.end(), ::isdigit);
@@ -688,5 +691,83 @@ void ManageAllCustomers::displaySpecificCustomerAccountAndPurchaseHistory()
     if (!customerFound)
     {
         std::cout << "Customer with account number not found: Returning to Main Menu" << accountNumber << " not found.\n";
+    }
+}
+
+
+int ManageAllCustomers::customerManageMenuApp()
+{
+    bool customerDataLoaded = loadCustomerDataFromFile("customerAccountData.csv");
+    bool purchaseDataLoaded = loadCustomerPurchaseDataFromFile("customerPurchases.csv");
+
+    if (!customerDataLoaded && !purchaseDataLoaded) //If default files do not load correctly give user option to enter file paths
+    {
+        std::cout << "Could Not load default customer or purchase data files." << std::endl;
+        std::cout << "Enter customer data file path? (leave blank to close program): ";
+        std::string customerDataFilePath; std::getline(std::cin, customerDataFilePath);
+        if (customerDataFilePath.empty()){
+            return 0; //Exit program if no file path provided
+        }
+        std::cout << "Enter purchase data file path? (leave blank to close program): ";
+        std::string purchaseDataFilePath; std::getline(std::cin, purchaseDataFilePath);
+        if (purchaseDataFilePath.empty()){
+            return 0; //Exit program if no file path provided
+        }
+        customerDataLoaded = loadCustomerDataFromFile(customerDataFilePath);
+        purchaseDataLoaded = loadCustomerPurchaseDataFromFile(purchaseDataFilePath);
+    }
+    
+    int choice;
+    while(true)
+    {
+        std::cout << "\n--- Customer Management Menu ---\n"
+                  << "1. Display All Customer Data\n"
+                  << "2. Display Sorted Customer Data By Last Name\n"
+                  << "3. Display Total Customer Spend Amount\n"
+                  << "4. Insert New Customer\n"
+                  << "5. Update Customer Information\n"
+                  << "6. Delete Customer\n"
+                  << "7. Add New Customer Purchase\n"
+                  << "8. Export Customer Data\n"
+                  << "9. Display Specific Customer Account And Purchase History\n"
+                  << "0. Exit\n"
+                  << "Enter your choice: ";
+        choice = readMenuChoice();
+
+        switch(choice)
+        {
+            case 1:
+                displayAllCustomerData();
+                break;
+            case 2:
+                displaySortedCustomerData();
+                break;
+            case 3:
+                displayTotalCustomerSpendAmt();
+                break;
+            case 4:
+                insertNewCustomer();
+                break;
+            case 5:
+                updateCustomerInformation();
+                break;
+            case 6:
+                deleteCustomer();
+                break;
+            case 7:
+                addNewCustomerPurchase();
+                break;
+            case 8:
+                exportCustomerData();
+                break;
+            case 9:
+                displaySpecificCustomerAccountAndPurchaseHistory();
+                break;
+            case 0:
+                std::cout << "Exiting program.\n";
+                return 0;
+            default:
+                std::cout << "Invalid choice. Please try again.\n";
+        }
     }
 }
