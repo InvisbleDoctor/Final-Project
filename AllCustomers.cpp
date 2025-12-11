@@ -85,3 +85,34 @@ void AllCustomers::printCustomerData() const
               << std::left << std::setw(wPhoneNumberCollum) << m_phoneNumber << std::endl;
 }   
 
+void AllCustomers::printPurchaseHistory() const //AllPurchases(const int& accountNumber, const std::string& item, const Date& dateOfPurchase, const double& costOfPurchase)
+{
+    const int accountNumberWidth = 10;
+    const int itemWidth = 30;
+    const int dateWidth = 15;
+    const int costWidth = 10;
+
+    const char dashFillChar = '-';
+    const std::string bar = "|";
+
+    //Header
+    std::cout << std::left << std::setw(accountNumberWidth) << "Account #" << bar
+              << std::left << std::setw(itemWidth) << "Item" << bar
+              << std::left << std::setw(dateWidth) << "Date" << bar
+              << std::left << std::setw(costWidth) << "Cost" << std::endl;
+    
+
+    //Splitter
+    std::cout << std::string(accountNumberWidth, dashFillChar) << bar
+                << std::string(itemWidth, dashFillChar) << bar
+                << std::string(dateWidth, dashFillChar) << bar
+                << std::string(costWidth, dashFillChar) << std::endl;
+    //Print Each Purchase In History
+    for (int i = 0; i < customerPurchaseHistory.size(); ++i)
+    {
+        std::cout << std::left << std::setw(accountNumberWidth) << customerPurchaseHistory[i].getAccountNumber() << bar
+                  << std::left << std::setw(itemWidth) << customerPurchaseHistory[i].getItem() << bar
+                  << std::left << std::setw(dateWidth) << customerPurchaseHistory[i].getDateOfPurchase().returnDateAsString() << bar
+                  << std::left << "$" << std::fixed << std::setprecision(2) << customerPurchaseHistory[i].getCostOfPurchase() << std::endl;
+    }
+}

@@ -27,6 +27,14 @@ struct Date {
     void setYear(int val) {year = val;}
     void setMonth(int val) {month = val;}
     void setDay(int val) {day = val;}
+
+    std::string returnDateAsString() const{
+        std::stringstream dateStream;
+        dateStream << std::setw(4) << std::setfill('0') << year << "-"
+                   << std::setw(2) << std::setfill('0') << month << "-"
+                   << std::setw(2) << std::setfill('0') << day;
+        return dateStream.str();
+    }
 };
 
 
