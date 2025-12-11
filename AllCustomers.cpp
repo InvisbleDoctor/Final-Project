@@ -51,6 +51,7 @@ AllCustomers& AllCustomers::operator=(const AllCustomers& rhs){
 void AllCustomers::printCustomerData() const
 {
     //Seting the width size of collums for display of data
+    //const int wIndexCollum = 5;
     const int wFirstNameCollum = 20;
     const int wLastNameCollum = 20;
     const int wAccountNumberCollum = 10;
@@ -65,7 +66,7 @@ void AllCustomers::printCustomerData() const
     const std::string bar = "|";
 
     //Splitter Collum To Seperate Header From Data
-    std::cout << std::string(wAccountNumberCollum, dashFillChar) << bar 
+    std::cout //<< std::string(wAccountNumberCollum, dashFillChar) << bar 
               << std::string(wFirstNameCollum, dashFillChar) << bar
               << std::string(wLastNameCollum, dashFillChar) << bar
               << std::string(wStreetAddressCollum, dashFillChar) << bar
@@ -74,8 +75,9 @@ void AllCustomers::printCustomerData() const
               << std::string(wZipCodeCollum, dashFillChar) << bar
               << std::string(wPhoneNumberCollum, dashFillChar) << std::endl;
 
-    //Printing Customer Data  accountNumber,firstName,lastName,streetAddress,city,state,zipCode,phoneNumber
-    std::cout << std::left << std::setw(wAccountNumberCollum) << m_accountNumber << bar
+    //Printing Customer Data  index accountNumber,firstName,lastName,streetAddress,city,state,zipCode,phoneNumber
+    std::cout //<< std::left << std::setw(wIndexCollum) << "" << bar
+              << std::left << std::setw(wAccountNumberCollum) << m_accountNumber << bar
               << std::left << std::setw(wFirstNameCollum) << m_firstName << bar
               << std::left << std::setw(wLastNameCollum) << m_lastName << bar
               << std::left << std::setw(wStreetAddressCollum) << m_streetAddress << bar
