@@ -1,0 +1,11 @@
+accountNumber,firstName,lastName,streetAddress,city,state zipCode,phoneNumber
+1002,Eddy,Cue,25 Apple Park Way,Cupertino,CA,95014,408-555-2020
+1003,Craig,Federighi,45 De Anza Blvd,Cupertino,CA,95015,408-555-3030
+1004,Jony,Ive,99 Design Dr,San Jose,CA,95110,408-555-4040
+1005,Angela,Ahrendts,77 Retail St,Palo Alto,CA,94301,650-555-1111
+1006,Philip,Schiller,188 Market St,San Francisco,CA,94103,415-555-2222
+1007,Jeff,Williams,133 Supply Ln,San Jose,CA,95112,408-555-5050
+1008,Luca,Maestri,200 Finance Blvd,Sunnyvale,CA,94085,408-555-6060
+1009,Katherine,Adams,12 Legal Way,Cupertino,CA,95014,408-555-7070
+1010,Dan,Riccio,500 Hardware Dr,Mountain View,CA,94040,650-555-3333
+1011,Flo,test,211 CSI AVE,Staten Island,NY,10301,333-999-1111

@@ -1,6 +1,7 @@
 #include "ManageAllCustomers.h"
 
 void printCustomerHeader(){
+    //Primary Column Width Constants
     const int wAccountNumberCollum = 10;
     const int wFirstNameCollum = 20;
     const int wLastNameCollum = 20;
@@ -10,23 +11,36 @@ void printCustomerHeader(){
     const int wZipCodeCollum = 15;
     const int wPhoneNumberCollum = 20;
 
+    //Tester Column Width Constants
+    const int COL_ACCOUNT_NUMBER = 10;
+    const int COL_FIRST_NAME = 15;
+    const int COL_LAST_NAME = 15;
+    const int COL_STREET_ADDRESS = 23;
+    const int COL_CITY = 13;
+    const int COL_STATE = 7;
+    const int COL_ZIP_CODE = 10;
+    const int COL_PHONE_NUMBER = 14;
+    
+
+
     //Helper Chars
     const char dashFillChar = '-';
     const std::string bar = "|";
 
     //Header Collum For Dispaying All Customer Data   accountNumber,firstName,lastName,streetAddress,city,state,zipCode,phoneNumber
-    std::cout << std::left << std::setw(wAccountNumberCollum) << "Account #" << bar 
-              << std::left << std::setw(wFirstNameCollum) << "First Name" << bar
-              << std::left << std::setw(wLastNameCollum) << "Last Name" << bar
-              << std::left << std::setw(wStreetAddressCollum) << "Street Address" << bar
-              << std::left << std::setw(wCityCollum) << "City" << bar
-              << std::left << std::setw(wStateCollum) << "State" << bar
-              << std::left << std::setw(wZipCodeCollum) << "Zip Code" << bar
-              << std::left << std::setw(wPhoneNumberCollum) << "Phone Number" << std::endl;
+    std::cout << std::left << std::setw(COL_ACCOUNT_NUMBER) << "Account #" << bar 
+              << std::left << std::setw(COL_FIRST_NAME) << "First Name" << bar
+              << std::left << std::setw(COL_LAST_NAME) << "Last Name" << bar
+              << std::left << std::setw(COL_STREET_ADDRESS) << "Street Address" << bar
+              << std::left << std::setw(COL_CITY) << "City" << bar
+              << std::left << std::setw(COL_STATE) << "State" << bar
+              << std::left << std::setw(COL_ZIP_CODE) << "Zip Code" << bar
+              << std::left << std::setw(COL_PHONE_NUMBER) << "Phone Number" << std::endl;
 }
 
 void printCustomerHeaderWithIndex()
 {
+    //Primary Column Width Constants
     const int wAccountNumberCollum = 10;
     const int wFirstNameCollum = 20;
     const int wLastNameCollum = 20;
@@ -37,23 +51,34 @@ void printCustomerHeaderWithIndex()
     const int wPhoneNumberCollum = 20;
     const int wIndexCollum = 7;
 
+    //Tester Column Width Constants
+    const int COL_ACCOUNT_NUMBER = 10;
+    const int COL_FIRST_NAME = 15;
+    const int COL_LAST_NAME = 15;
+    const int COL_STREET_ADDRESS = 23;
+    const int COL_CITY = 13;
+    const int COL_STATE = 7;
+    const int COL_ZIP_CODE = 10;
+    const int COL_PHONE_NUMBER = 14;
+    const int COL_INDEX = 7;
+
     //Helper Chars
     const char dashFillChar = '-';
     const std::string bar = "|";
 
     //Header Collum For Dispaying All Customer Data   accountNumber,firstName,lastName,streetAddress,city,state,zipCode,phoneNumber
-    std::cout << std::left << std::setw(wAccountNumberCollum) << "Account #" << bar 
-              << std::left << std::setw(wFirstNameCollum) << "First Name" << bar
-              << std::left << std::setw(wLastNameCollum) << "Last Name" << bar
-              << std::left << std::setw(wStreetAddressCollum) << "Street Address" << bar
-              << std::left << std::setw(wCityCollum) << "City" << bar
-              << std::left << std::setw(wStateCollum) << "State" << bar
-              << std::left << std::setw(wZipCodeCollum) << "Zip Code" << bar
-              << std::left << std::setw(wPhoneNumberCollum) << "Phone Number" << bar 
-              << std::left << std::setw(wIndexCollum) << "CID: " << std::endl;
+    std::cout << std::left << std::setw(COL_ACCOUNT_NUMBER) << "Account #" << bar 
+              << std::left << std::setw(COL_FIRST_NAME) << "First Name" << bar
+              << std::left << std::setw(COL_LAST_NAME) << "Last Name" << bar
+              << std::left << std::setw(COL_STREET_ADDRESS) << "Street Address" << bar
+              << std::left << std::setw(COL_CITY) << "City" << bar
+              << std::left << std::setw(COL_STATE) << "State" << bar
+              << std::left << std::setw(COL_ZIP_CODE) << "Zip Code" << bar
+              << std::left << std::setw(COL_PHONE_NUMBER) << "Phone Number" << bar 
+              << std::left << std::setw(COL_INDEX) << "CID: " << std::endl;
 }
 
-bool ManageAllCustomers::loadCustomerDataFromFile(const std::string& filename)
+bool ManageAllCustomers::loadCustomerDataFromFile(const std::string& filename)  //Load Customer Data from CSV file into Database
 {
     //Checking if file opens correctly
     std::ifstream inputFile;
@@ -169,61 +194,17 @@ bool ManageAllCustomers::loadCustomerPurchaseDataFromFile(const std::string& fil
 
 
 
-void ManageAllCustomers::displayAllCustomerData(){
+void ManageAllCustomers::displayAllCustomerData(){ ////Display Each Customer's Data in Database
 
-    const int wAccountNumberCollum = 10;
-    const int wFirstNameCollum = 20;
-    const int wLastNameCollum = 20;
-    const int wStreetAddressCollum = 40;
-    const int wCityCollum = 15;
-    const int wStateCollum = 15;
-    const int wZipCodeCollum = 15;
-    const int wPhoneNumberCollum = 20;
-
-    //Helper Chars
-    const char dashFillChar = '-';
-    const std::string bar = "|";
-
-    //Header Collum For Dispaying All Customer Data   accountNumber,firstName,lastName,streetAddress,city,state,zipCode,phoneNumber
-    std::cout << std::left << std::setw(wAccountNumberCollum) << "Account #" << bar 
-              << std::left << std::setw(wFirstNameCollum) << "First Name" << bar
-              << std::left << std::setw(wLastNameCollum) << "Last Name" << bar
-              << std::left << std::setw(wStreetAddressCollum) << "Street Address" << bar
-              << std::left << std::setw(wCityCollum) << "City" << bar
-              << std::left << std::setw(wStateCollum) << "State" << bar
-              << std::left << std::setw(wZipCodeCollum) << "Zip Code" << bar
-              << std::left << std::setw(wPhoneNumberCollum) << "Phone Number" << std::endl;
-
-    for (int i = 0; i < defaultCustomerDataBase.size(); ++i){
+    printCustomerHeader(); //Print Header
+    for (int i = 0; i < defaultCustomerDataBase.size(); ++i){  
         defaultCustomerDataBase[i].printCustomerData();
     }
 }
 
 void ManageAllCustomers::displayAllCustomerData(const std::vector<AllCustomers>& customers){
 
-    const int wAccountNumberCollum = 10;
-    const int wFirstNameCollum = 20;
-    const int wLastNameCollum = 20;
-    const int wStreetAddressCollum = 40;
-    const int wCityCollum = 15;
-    const int wStateCollum = 15;
-    const int wZipCodeCollum = 15;
-    const int wPhoneNumberCollum = 20;
-
-    //Helper Chars
-    const char dashFillChar = '-';
-    const std::string bar = "|";
-
-    //Header Collum For Dispaying All Customer Data   accountNumber,firstName,lastName,streetAddress,city,state,zipCode,phoneNumber
-    std::cout << std::left << std::setw(wAccountNumberCollum) << "Account #" << bar 
-              << std::left << std::setw(wFirstNameCollum) << "First Name" << bar
-              << std::left << std::setw(wLastNameCollum) << "Last Name" << bar
-              << std::left << std::setw(wStreetAddressCollum) << "Street Address" << bar
-              << std::left << std::setw(wCityCollum) << "City" << bar
-              << std::left << std::setw(wStateCollum) << "State" << bar
-              << std::left << std::setw(wZipCodeCollum) << "Zip Code" << bar
-              << std::left << std::setw(wPhoneNumberCollum) << "Phone Number" << std::endl;
-
+    printCustomerHeader();
     for (int i = 0; i < customers.size(); ++i){
         customers[i].printCustomerData();
     }
@@ -232,14 +213,14 @@ void ManageAllCustomers::displayAllCustomerData(const std::vector<AllCustomers>&
 
 void ManageAllCustomers::displaySortedCustomerData() {
     int userOption = 0;
-    std::vector<AllCustomers> sortedCustomerData = defaultCustomerDataBase; //Copy original data to sorted vector
+    std::vector<AllCustomers> sortedCustomerData = defaultCustomerDataBase; //Copy original data to another vector to sort
     std::cout << "1:Sort By Last Name Ascending \n2: Sort By Last Name Descending\n";
     std::cout << "Enter Option: ";
     std::cin >> userOption;
 
     if (userOption == 1)
     {
-        std::sort(sortedCustomerData.begin(), sortedCustomerData.end(),
+        std::sort(sortedCustomerData.begin(), sortedCustomerData.end(), //Lambda Function to compare last names for sorting
             [](const AllCustomers& a, const AllCustomers& b) {
                 return a.getLastName() < b.getLastName();
             }
@@ -247,7 +228,7 @@ void ManageAllCustomers::displaySortedCustomerData() {
     }
     else if (userOption == 2)
     {
-        std::sort(sortedCustomerData.begin(), sortedCustomerData.end(),
+        std::sort(sortedCustomerData.begin(), sortedCustomerData.end(), //Lambda Function to compare last names for sorting
             [](const AllCustomers& a, const AllCustomers& b) {
                 return a.getLastName() > b.getLastName();
             }
@@ -267,9 +248,7 @@ void ManageAllCustomers::displaySortedCustomerData() {
 
 
 void ManageAllCustomers::displayTotalCustomerSpendAmt() {
-    std::cout << "Type the account number of the customer you wish to view total spend amount:";
-    int accountNumber;
-    std::cin >> accountNumber;
+    int accountNumber = userCustomerSelectIndex();
     bool customerFound = false;
 
     for (int i = 0; i < defaultCustomerDataBase.size(); ++i)
@@ -295,7 +274,7 @@ void ManageAllCustomers::displayTotalCustomerSpendAmt() {
 }
 
 
-void ManageAllCustomers::insertNewCustomer() {
+void ManageAllCustomers::insertNewCustomer() {  //Gives User ability to insert new customer data into database
     int userCancel = 0;
     std::cout << "Customer insertion Tool: Type -1 at any prompt to cancel insertion and return to main menu.\n";
         std::string firstName, lastName,
@@ -424,6 +403,7 @@ void ManageAllCustomers::insertNewCustomer() {
     const std::string& streetAddress, const std::string& city, const std::string& state, 
     const std::string& zipCode, const std::string& phoneNumber);*/
 
+        //Create New Customer Object and Add to Database
         AllCustomers newCustomer(firstName, lastName, accountNumber, streetAddress, city, state, zipCode, phoneNumber);
         defaultCustomerDataBase.push_back(newCustomer);
         std::cout << "Customer added successfully.\n";
@@ -439,7 +419,7 @@ void ManageAllCustomers::insertNewCustomer() {
         }
 }
 
-void ManageAllCustomers::updateCustomerInformation() {
+void ManageAllCustomers::updateCustomerInformation() { //Gives User ability to update existing customer data in database
 
     //std::cout << "Type Account Number of Customer to Update: ";
     int accountNumber = userCustomerSelectIndex();
@@ -558,7 +538,7 @@ void ManageAllCustomers::updateCustomerInformation() {
 }
 
 
-void ManageAllCustomers::deleteCustomer(){
+void ManageAllCustomers::deleteCustomer(){  //Gives User ability to delete existing customer data in database
     //std::cout << "Type Account Number of Customer to Delete: ";
     int accountNumber = userCustomerSelectIndex();
     int finalConfirm;
@@ -586,6 +566,7 @@ void ManageAllCustomers::deleteCustomer(){
     }
 
 }
+
 void ManageAllCustomers::addNewCustomerPurchase() {
     //std::cout << "Type Account Number of Customer to Add Purchase: ";
     int accountNumber = userCustomerSelectIndex();
@@ -597,7 +578,7 @@ void ManageAllCustomers::addNewCustomerPurchase() {
         std::cout << "Purchase addition cancelled. Returning to main menu.\n";
         return;
     }
-    for(auto& account : defaultCustomerDataBase){
+    for(auto& account : defaultCustomerDataBase){  //Range-based for loop to find customer account
         if(account.getAccountNumber() == accountNumber){
             std::string item;
             std::string yearStr, monthStr, dayStr;
@@ -727,7 +708,7 @@ void ManageAllCustomers::displaySpecificCustomerAccountAndPurchaseHistory()
 }
 
 
-int ManageAllCustomers::customerManageMenuApp()
+int ManageAllCustomers::customerManageMenuApp() //Main Menu for Customer Management System
 {
     bool customerDataLoaded = loadCustomerDataFromFile("customerAccountData.csv");
     bool purchaseDataLoaded = loadCustomerPurchaseDataFromFile("customerPurchases.csv");
